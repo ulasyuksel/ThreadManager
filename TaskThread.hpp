@@ -52,6 +52,11 @@ public:
      */
     void resume();
 
+    /**
+     * Get task id.
+     */
+    unsigned int id();
+
 private:
     /**
      * method for running thread.

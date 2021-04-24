@@ -56,6 +56,11 @@ void TaskThread::resume()
     }
 }
 
+unsigned int TaskThread::id()
+{
+    return m_id;
+}
+
 ThreadState TaskThread::status()
 {
     return m_state;
