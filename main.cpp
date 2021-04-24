@@ -79,6 +79,14 @@ int main(int argc, char **argv)
                         std::cout << "quit" << std::endl;
                         break;
                     }
+                    else if (in_command.find(STATUS_KEY) == 0)
+                    {
+                        unsigned int max_thread = my_local_thread_manager.size();
+                        for (unsigned int thread_id = 0; thread_id < max_thread; thread_id++)
+                        {
+                            std::cout << STATUS_KEY << ": " << thread_id << " --> " << threadStateToString(my_local_thread_manager.status(thread_id)) << std::endl;
+                        }
+                    }
                     else
                     {
                         unsigned int thread_id;
@@ -93,34 +101,37 @@ int main(int argc, char **argv)
                             }
                             else
                             {
-                                // Check the command which has to be run.
-                                if (in_command.find(STATUS_KEY) == 0)
+                                if (thread_id < my_local_thread_manager.size())
                                 {
-                                    std::cout << STATUS_KEY << ": " << thread_id << " --> " << threadStateToString(my_local_thread_manager.status(thread_id)) << std::endl;
-                                }
-                                else if(in_command.find(START_KEY) == 0)
-                                {
-                                    std::cout << START_KEY << ": " << thread_id << std::endl;
-                                    my_local_thread_manager.start(thread_id);
-                                }
-                                else if(in_command.find(ABORT_KEY) == 0)
-                                {
-                                    std::cout << ABORT_KEY << ": " << thread_id << std::endl;
-                                    my_local_thread_manager.abort(thread_id);
-                                }
-                                else if(in_command.find(PAUSE_KEY) == 0)
-                                {
-                                    std::cout << PAUSE_KEY << ": " << thread_id << std::endl;
-                                    my_local_thread_manager.pause(thread_id);
-                                }
-                                else if(in_command.find(RESUME_KEY) == 0)
-                                {
-                                    std::cout << RESUME_KEY << ": " << thread_id << std::endl;
-                                    my_local_thread_manager.resume(thread_id);
+                                    // Check the command which has to be run.
+                                    if(in_command.find(START_KEY) == 0)
+                                    {
+                                        std::cout << START_KEY << ": " << thread_id << std::endl;
+                                        my_local_thread_manager.start(thread_id);
+                                    }
+                                    else if(in_command.find(ABORT_KEY) == 0)
+                                    {
+                                        std::cout << ABORT_KEY << ": " << thread_id << std::endl;
+                                        my_local_thread_manager.abort(thread_id);
+                                    }
+                                    else if(in_command.find(PAUSE_KEY) == 0)
+                                    {
+                                        std::cout << PAUSE_KEY << ": " << thread_id << std::endl;
+                                        my_local_thread_manager.pause(thread_id);
+                                    }
+                                    else if(in_command.find(RESUME_KEY) == 0)
+                                    {
+                                        std::cout << RESUME_KEY << ": " << thread_id << std::endl;
+                                        my_local_thread_manager.resume(thread_id);
+                                    }
+                                    else
+                                    {
+                                        std::cout << "wrong command format" << std::endl;
+                                    }
                                 }
                                 else
                                 {
-                                    std::cout << "wrong command format" << std::endl;
+                                    std::cout << "<id> out of bound" << std::endl;
                                 }
                             }
                         }
