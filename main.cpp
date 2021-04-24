@@ -17,7 +17,6 @@ static const std::string RENDER_COMMAND_LIST =
 "##############################################################################\n"
 "Enter command: \n"
 "* status – returns ids and status of all registered jobs.\n"
-"*       The job status can be one of the following: idle/running/paused/aborted\n"
 "* start <id> - starts job with the given id \n"
 "* abort <id> - aborts execution of a job with the given id \n"
 "* pause <id> - halts execution of a job with the given id \n"
