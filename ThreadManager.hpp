@@ -41,6 +41,11 @@ public:
      */
     void resume(unsigned int id);
 
+    /**
+     * Number of threads in pool.
+     */
+    unsigned int size();
+
 private:
 
     ///vector to store TaskThreads

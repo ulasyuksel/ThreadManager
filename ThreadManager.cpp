@@ -45,6 +45,12 @@ ThreadManager::status(unsigned int id)
     return state;
 }
 
+unsigned int
+ThreadManager::size()
+{
+    return m_task_thread_vector.size();
+}
+
 void
 ThreadManager::start(unsigned int id)
 {
