@@ -66,10 +66,10 @@ ThreadState TaskThread::status()
     return m_state;
 }
 
-void TaskThread::setTask(std::function<bool()> task_func)
+void TaskThread::registerJob(std::unique_ptr<AnyJob>& job)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
-    m_task_func = move(task_func);
+    m_job = std::move(job);
 }
 
 void TaskThread::internalTask() {
@@ -80,7 +80,7 @@ void TaskThread::internalTask() {
         {
             m_state_changed.wait(lock);
         }
-        while (m_state == ThreadState::RUNNING && m_task_func != nullptr && m_task_func())
+        while (m_state == ThreadState::RUNNING && m_job != nullptr && m_job->run())
         {
             ;
         }

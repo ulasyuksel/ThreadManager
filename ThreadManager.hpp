@@ -46,7 +46,10 @@ public:
      */
     unsigned int size();
 
-    void setTask(unsigned int id, std::function<bool()> task_func);
+    /**
+     * Register job to task thread with given id.
+     */
+    void registerJob(unsigned int id, std::unique_ptr<AnyJob> &job);
 
 private:
 

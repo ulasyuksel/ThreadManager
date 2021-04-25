@@ -2,8 +2,9 @@
 #include <sstream>
 #include <string>
 
+#include "FirstJob.hpp"
+#include "SecondJob.hpp"
 #include "ThreadManager.hpp"
-
 
 static const std::string STATUS_KEY("status");
 static const std::string ABORT_KEY("abort");
@@ -33,14 +34,6 @@ static void usage(std::string name)
               << "\t-N <# of thread>, #number of threads to be created greater than zero"
               << std::endl;
 }
-
-static bool TASK_1()
-{
-    std::cout << "TASK_1_RUNNING" << std::endl;
-    std::this_thread::sleep_for (std::chrono::seconds(1));
-    return true;
-}
-
 
 int main(int argc, char **argv)
 {
@@ -76,7 +69,16 @@ int main(int argc, char **argv)
                 unsigned int max_thread = my_local_thread_manager.size();
                 for (unsigned int thread_id = 0; thread_id < max_thread; thread_id++)
                 {
-                    my_local_thread_manager.setTask(thread_id, TASK_1);
+                    if (thread_id%2)
+                    {
+                        std::unique_ptr<AnyJob> ret = std::make_unique<FirstJob>();
+                        my_local_thread_manager.registerJob(thread_id, ret);
+                    }
+                    else
+                    {
+                        std::unique_ptr<AnyJob> ret = std::make_unique<SecondJob>();
+                        my_local_thread_manager.registerJob(thread_id, ret);
+                    }
                 }
                 while (true)
                 {

@@ -13,6 +13,7 @@
 #include <functional>
 #include <thread>
 #include "ThreadState.hpp"
+#include "AnyJob.hpp"
 
 
 class TaskThread {
@@ -23,9 +24,9 @@ public:
     /**
      * Set task.
      *
-     * @param task_func task function to be run in the internalTask.
+     * @param register job to task.
      */
-    void setTask(std::function<bool()> task_func);
+    void registerJob(std::unique_ptr<AnyJob> &job);
 
     /**
      * Get status of task.
@@ -79,6 +80,9 @@ private:
 
     /// Thread state.
     std::atomic<ThreadState> m_state;
+
+    /// Job to run.
+    std::unique_ptr<AnyJob> m_job;
 };
 
 #endif /* TASKTHREAD_HPP_ */

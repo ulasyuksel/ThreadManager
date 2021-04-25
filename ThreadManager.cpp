@@ -33,11 +33,11 @@ ThreadManager::status(unsigned int id)
     return state;
 }
 void
-ThreadManager::setTask(unsigned int id, std::function<bool()> task_func)
+ThreadManager::registerJob(unsigned int id, std::unique_ptr<AnyJob>& job)
 {
     if (m_task_thread_vector.size() > id)
     {
-        m_task_thread_vector[id]->setTask(task_func);
+        m_task_thread_vector[id]->registerJob(job);
     }
 }
 
