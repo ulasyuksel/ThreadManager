@@ -34,6 +34,13 @@ static void usage(std::string name)
               << std::endl;
 }
 
+static bool TASK_1()
+{
+    std::cout << "TASK_1_RUNNING" << std::endl;
+    std::this_thread::sleep_for (std::chrono::seconds(1));
+    return true;
+}
+
 
 int main(int argc, char **argv)
 {
@@ -46,8 +53,6 @@ int main(int argc, char **argv)
             usage(argv[0]);
             return_val = 0;
         }
-
-
     }
     else if (argc == 3)
     {
@@ -68,11 +73,15 @@ int main(int argc, char **argv)
                 std::string in_command;
                 ThreadManager my_local_thread_manager(number_of_threads);
 
+                unsigned int max_thread = my_local_thread_manager.size();
+                for (unsigned int thread_id = 0; thread_id < max_thread; thread_id++)
+                {
+                    my_local_thread_manager.setTask(thread_id, TASK_1);
+                }
                 while (true)
                 {
                     std::cout << RENDER_COMMAND_LIST;
                     getline (std::cin,in_command);
-
                     if(in_command.find(QUIT_KEY) == 0)
                     {
                         std::cout << "quit" << std::endl;

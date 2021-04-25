@@ -46,6 +46,8 @@ public:
      */
     unsigned int size();
 
+    void setTask(unsigned int id, std::function<bool()> task_func);
+
 private:
 
     ///vector to store TaskThreads

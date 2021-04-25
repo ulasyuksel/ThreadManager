@@ -7,30 +7,18 @@
 
 #include "ThreadManager.hpp"
 #include "TaskThread.hpp"
-#include <iostream>
-#include <sstream>
-#include <string>
-
-static bool TASK_1()
-{
-    std::cout << "TASK_1_RUNNING" << std::endl;
-    std::this_thread::sleep_for (std::chrono::seconds(1));
-    return true;
-}
 
 ThreadManager::ThreadManager(unsigned int size)
 {
-
     for(unsigned int i = 0; i < size; i++)
     {
         auto ret = std::make_unique<TaskThread>(i);
         m_task_thread_vector.push_back(std::move(ret));
-        m_task_thread_vector[i]->setTask(TASK_1);
     }
-
 }
 
-ThreadManager::~ThreadManager() {
+ThreadManager::~ThreadManager()
+{
     m_task_thread_vector.clear();
 }
 
@@ -43,6 +31,14 @@ ThreadManager::status(unsigned int id)
         state = m_task_thread_vector[id]->status();
     }
     return state;
+}
+void
+ThreadManager::setTask(unsigned int id, std::function<bool()> task_func)
+{
+    if (m_task_thread_vector.size() > id)
+    {
+        m_task_thread_vector[id]->setTask(task_func);
+    }
 }
 
 unsigned int
