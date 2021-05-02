@@ -8,30 +8,7 @@
 #include "../TaskThread.hpp"
 #include "../ThreadState.hpp"
 #include "../FirstJob.hpp"
-
-#include <iostream>
-#include <stdexcept>
-#include <string>
-
-// ALEPH_ASSERT_EQUAL From: https://bastian.rieck.me/blog/posts/2017/simple_unit_tests/
-// Can be moved to a header.
-
-#define ALEPH_ASSERT_EQUAL( x, y )                                  \
-{                                                                   \
-  if( ( x ) != ( y ) )                                              \
-  {                                                                 \
-    throw std::runtime_error(   std::string( __FILE__ )             \
-                              + std::string( ":" )                  \
-                              + std::to_string( __LINE__ )          \
-                              + std::string( " in " )               \
-                              + std::string( __PRETTY_FUNCTION__ )  \
-                              + std::string( ": " )                 \
-                              + std::to_string( ( x ) )             \
-                              + std::string( " != " )               \
-                              + std::to_string( ( y ) )             \
-    );                                                              \
-  }                                                                 \
-}
+#include "unit_tests.h"
 
 
 int main(int argc, char **argv)
