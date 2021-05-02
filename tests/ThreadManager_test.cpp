@@ -11,7 +11,8 @@
 #include "../FirstJob.hpp"
 #include "../SecondJob.hpp"
 #include "unit_tests.h"
-   static const unsigned int max_thread = 4;
+
+static const unsigned int max_thread = 4;
 
 int main(int argc, char **argv)
 {
@@ -24,6 +25,9 @@ int main(int argc, char **argv)
     {
         ALEPH_ASSERT_EQUAL((unsigned)my_local_thread_manager.status(thread_id), (unsigned)ThreadState::IDLE);
     }
+
+    //if id is out of bound status should be UNKNOWN
+    ALEPH_ASSERT_EQUAL((unsigned)my_local_thread_manager.status(max_thread), (unsigned)ThreadState::UNKNOWN);
 
     //register jobs
     for (unsigned int thread_id = 0; thread_id < max_thread; thread_id++)
@@ -79,7 +83,4 @@ int main(int argc, char **argv)
         my_local_thread_manager.start(thread_id);
         ALEPH_ASSERT_EQUAL((unsigned)my_local_thread_manager.status(thread_id),(unsigned)ThreadState::ABORTED);
     }
-
 }
-
-
