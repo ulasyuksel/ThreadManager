@@ -22,7 +22,7 @@
                               + std::string( ":" )                  \
                               + std::to_string( __LINE__ )          \
                               + std::string( " in " )               \
-                              + std::string( __PRETTY_FUNCTION__ )  \
+                              + std::string( __FUNCTION__ )  \
                               + std::string( ": " )                 \
                               + std::to_string( ( x ) )             \
                               + std::string( " != " )               \
