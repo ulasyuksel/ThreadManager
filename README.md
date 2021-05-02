@@ -1,6 +1,7 @@
 # ThreadManager
 To Build:
 ./cmake
+
 make
 
 To Run tests:
