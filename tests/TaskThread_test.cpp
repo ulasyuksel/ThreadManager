@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 {
     //check ID
     TaskThread thread(3);
-    ALEPH_ASSERT_EQUAL((unsigned)2,(unsigned)thread.id());
+    ALEPH_ASSERT_EQUAL((unsigned)3,(unsigned)thread.id());
     //check initial state, IDLE
     ALEPH_ASSERT_EQUAL((unsigned)thread.status(),(unsigned)ThreadState::IDLE);
 
