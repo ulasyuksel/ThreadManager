@@ -1,7 +1,7 @@
 # ThreadManager
 This is a console application to manage creted threads. 
 It is built via github workflows for Linux (ubuntu), Windows and Mac platforms. 
-[![Build Status]](https://github.com/ulasyuksel/ThreadManager/actions)
+[[Build Status]](https://github.com/ulasyuksel/ThreadManager/actions) can be checked from the link.
 
 *To Build:*
 
