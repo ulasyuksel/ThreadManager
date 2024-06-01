@@ -1,11 +1,19 @@
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-ADD_EXECUTABLE( TaskThread_test TaskThread_test.cpp ../TaskThread.cpp ../FirstJob.cpp)
-ADD_TEST(            TaskThread TaskThread_test    )
-target_link_libraries(TaskThread_test Threads::Threads)
+include(FetchContent)
 
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/release-1.11.0.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
-ADD_EXECUTABLE( ThreadManager_test ThreadManager_test.cpp ../ThreadManager.cpp ../TaskThread.cpp ../FirstJob.cpp ../SecondJob.cpp)
-ADD_TEST(            ThreadManager ThreadManager_test    )
-target_link_libraries(ThreadManager_test Threads::Threads)
+enable_testing()
+
+include(GoogleTest)
+
+ADD_SUBDIRECTORY(TaskThreadTest)
+ADD_SUBDIRECTORY(ThreadManagerTest)

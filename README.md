@@ -5,15 +5,13 @@ It is built via github workflows for Linux (ubuntu), Windows and Mac platforms.
 
 *To Build:*
 
-```$cmake ./```
+```$cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug```
 
-```$make```
+```$cmake --build build --config Debug```
 
 *To Run tests:*
 
-```$make tests```
-
-Please check "/Testing/Temporary" folder if any test fails.
+```ctest --test-dir build```
 
 *To Run ThreadManager:*
 
