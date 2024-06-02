@@ -11,7 +11,11 @@ It is built via github workflows for Linux (ubuntu), Windows and Mac platforms.
 
 *To Run tests:*
 
-```ctest --test-dir build```
+```$ctest --test-dir build```
+
+*To clean:*
+
+```$cmake --build build --target clean```
 
 *To Run ThreadManager:*
 
