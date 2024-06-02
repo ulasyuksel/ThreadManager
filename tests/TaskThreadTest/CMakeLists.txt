@@ -5,7 +5,7 @@ enable_testing()
 
 include_directories(../../)
 ADD_EXECUTABLE( TaskThreadTest TaskThreadTest.cpp ../../TaskThread.cpp ../../FirstJob.cpp)
-ADD_TEST(TaskThread TaskThreadTest    )
+ADD_TEST(TaskThread TaskThreadTest)
 target_link_libraries(TaskThreadTest Threads::Threads
 GTest::gtest_main
 GTest::gmock_main

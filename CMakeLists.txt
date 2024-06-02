@@ -7,5 +7,4 @@ find_package(Threads REQUIRED)
 add_executable(ThreadManager main.cpp FirstJob.cpp SecondJob.cpp ThreadManager.cpp TaskThread.cpp)
 target_link_libraries(ThreadManager Threads::Threads)
 
-ENABLE_TESTING()
 ADD_SUBDIRECTORY( tests )
