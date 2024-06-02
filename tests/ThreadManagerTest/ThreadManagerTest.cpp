@@ -10,6 +10,7 @@
 #include "ThreadState.hpp"
 #include "FirstJob.hpp"
 #include "SecondJob.hpp"
+#include <memory> 
 #include <gtest/gtest.h>
 
 static const unsigned int max_thread = 4;

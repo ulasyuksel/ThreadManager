@@ -8,6 +8,7 @@
 #include "TaskThread.hpp"
 #include "ThreadState.hpp"
 #include "FirstJob.hpp"
+#include <memory> 
 #include <gtest/gtest.h>
 
 class TaskThreadTest : public testing::Test {
